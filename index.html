@@ -11,6 +11,11 @@
             {
                 document.getElementById(elemId).innerHTML = createCompanyList();
             }
+
+            function setPeopleList(elemId)
+            {
+                document.getElementById(elemId).innerHTML = createPeopleList();
+            }            
         </script>
 
         <h2>Companies</h2>
@@ -19,6 +24,15 @@
             <div id="company_list"></div>
             <input type="button" value="Get All Companies" onclick="javascript:setCompanyList('company_list')"></input>
         </form>
+
+        <hr>
+
+        <h2>People</h2>
+
+        <form name="people_actions">
+            <div id="people_list"></div>
+            <input type="button" value="Get All People" onclick="javascript:setPeopleList('people_list')"></input>
+        </form>        
 
     </body>
 
