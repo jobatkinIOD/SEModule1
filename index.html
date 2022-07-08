@@ -1,0 +1,18 @@
+<html>
+    <head>
+        <script type="text/javascript" src="script.js"/>
+    </head>
+    <body>
+        <script>
+            function setCompanyList(elemId)
+            {
+                document.getElementById(elemId).innerHTML = createCompanyList();
+            }
+        </script>        
+        <h2>Companies</h2>
+        <form name="company_actions">
+            <div id="company_list"></div>
+            <input type="button" name="Get All Companies" onclick="javascript:setCompanyList()"></input>
+        </form>
+    </body>
+</html>
