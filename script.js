@@ -73,7 +73,7 @@ function createPeopleList()
     {
         html += '<li>' + people[i].name + '</li>';
     }
-    html += '</li>';
+    html += '</ul>';
 
     return html;
 }
@@ -81,7 +81,15 @@ function createPeopleList()
 //This function generates a HTML list of all the company names
 function createCompanyList()
 {
+    let html = '<ul>';
 
+    for (i = 0; i < companies.length; i++)
+    {
+        html += '<li>' + companies[i].name + '</li>';
+    }
+    html += '</ul>';
+
+    return html;
 }
 
 //This function changes the company of the given person to the new value and prints a confirmation message
@@ -100,7 +108,15 @@ function changeCompany(person_name, new_company)
 //This function changes the address of the given person to the new value and prints a confirmation message
 function changeAddress(person_name, new_street, new_suburb)
 {
-
+    for (i = 0; i < people.length; i++)
+    {
+        if (people[i].name == person_name)
+        {
+            people[i].address = { street: new_street, suburb: new_suburb };
+            people[i].address.street = new_street;
+            people[i].address['suburb'] = new_suburb;
+        }
+    }
 }
 
 //This function gets the company category for a given person and prints and returns the category value
@@ -121,7 +137,7 @@ function getCompanyCategory(person_name)
     {
         if (companies[j].name == company)
         {
-            category = companies[i].category;
+            category = companies[j].category;
         }
     }
     console.log(company+' is in the '+category+' category');
@@ -142,7 +158,9 @@ function generatePeopleTable()
     html += '<thead><tr> <th>Name</th> <th>Address</th> <th>Company</th> </tr></thead>';
     for (i = 0; i < people.length; i++)
     {
-    
+        html += "<tr><td>"+people[i].name+"</td>";
+        html += "<td>"+people[i].address.street+" "+people[i].address.suburb+"</td>";
+        html += "<td>"+people[i].company+"</td></tr>";
     }
     html += '</table>';
 
