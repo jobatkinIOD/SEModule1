@@ -2,6 +2,7 @@
 
     <head>
         <script type="text/javascript" src="script.js"></script>
+        <link href="styles.css" rel="stylesheet" type="text/css"/>
     </head>
 
     <body>
@@ -9,7 +10,7 @@
         <script type="text/javascript">
             function setCompanyList(elemId)
             {
-                document.getElementById(elemId).innerHTML = createCompanyList();
+                document.getElementById(elemId).appendChild(createCompanyList())
             }
 
             function setPeopleList(elemId)
@@ -18,21 +19,29 @@
             }            
         </script>
 
-        <h2>Companies</h2>
+        <div class="container">
 
-        <form name="company_actions">
-            <div id="company_list"></div>
-            <input type="button" value="Get All Companies" onclick="javascript:setCompanyList('company_list')"></input>
-        </form>
+            <div class="companies">
+                <h2>Companies</h2>
 
-        <hr>
+                <form name="company_actions">
+                    <div id="company_list"></div>
+                    <input type="button" value="Get All Companies" onclick="setCompanyList('company_list')"></input>
+                </form>
 
-        <h2>People</h2>
+            </div>
 
-        <form name="people_actions">
-            <div id="people_list"></div>
-            <input type="button" value="Get All People" onclick="javascript:setPeopleList('people_list')"></input>
-        </form>        
+            <div class="people">
+                <h2>People</h2>
+
+                <form name="people_actions">
+                    <div id="people_list"></div>
+                    <input type="button" value="Get All People" onclick="setPeopleList('people_list')"></input>
+                </form>  
+
+            </div>      
+
+        </div>
 
     </body>
 

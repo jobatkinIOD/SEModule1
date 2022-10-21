@@ -58,18 +58,21 @@ function countPeople()
     return people.length;
 }
 
+//simple unit test
+if (countPeople() != people.length) { throw "People count failed"; };
+
 //This function prints and returns how many companies exist
 function countCompanies()
 {
 
 }
 
-//This function generates a HTML list of all the people names
+//This function generates a string containing a HTML list of all the people names
 function createPeopleList()
 {
     let html = '<ul>';
 
-    for (i = 0; i < people.length; i++)
+    for (let i = 0; i < people.length; i++)
     {
         html += '<li>' + people[i].name + '</li>';
     }
@@ -78,24 +81,26 @@ function createPeopleList()
     return html;
 }
 
-//This function generates a HTML list of all the company names
+//This function generates a HTML DOM unordered list element of all the company names
 function createCompanyList()
 {
-    let html = '<ul>';
+    let companyList = document.createElement('ul');
 
-    for (i = 0; i < companies.length; i++)
+    //a different style of for loop - creates a variable for each loop element
+    for (let company of companies)
     {
-        html += '<li>' + companies[i].name + '</li>';
+        let companyName = document.createElement('li');
+        companyName.innerText = company.name;
+        companyList.appendChild(companyName)
     }
-    html += '</ul>';
 
-    return html;
+    return companyList;
 }
 
 //This function changes the company of the given person to the new value and prints a confirmation message
 function changeCompany(person_name, new_company)
 {
-    for (i = 0; i < people.length; i++)
+    for (let i = 0; i < people.length; i++)
     {
         if (people[i].name == person_name)
         {
@@ -108,13 +113,13 @@ function changeCompany(person_name, new_company)
 //This function changes the address of the given person to the new value and prints a confirmation message
 function changeAddress(person_name, new_street, new_suburb)
 {
-    for (i = 0; i < people.length; i++)
+    for (let person of people)
     {
-        if (people[i].name == person_name)
+        if (person.name == person_name)
         {
-            people[i].address = { street: new_street, suburb: new_suburb };
-            people[i].address.street = new_street;
-            people[i].address['suburb'] = new_suburb;
+            person.address = { street: new_street, suburb: new_suburb };
+            person.address.street = new_street; //different way of accessing object properties
+            person.address['suburb'] = new_suburb; //different way of accessing object properties
         }
     }
 }
@@ -124,16 +129,17 @@ function getCompanyCategory(person_name)
 {
     let company;
     let category;
-    for (i = 0; i < people.length; i++)
-    {
-        if (people[i].name == person_name)
+
+    //another type of for loop that takes a function as a parameter
+    people.forEach(function(person) {
+        if (person.name == person_name)
         {
-            company = people[i].company;
+            company = person.company; //finds the matching company value and stores it in this variable
         }
-    }
+    });
     console.log(person_name+' works at '+company);
 
-    for (j = 0; j < companies.length; j++)
+    for (let j = 0; j < companies.length; j++)
     {
         if (companies[j].name == company)
         {
@@ -156,7 +162,7 @@ function generatePeopleTable()
 {
     let html = '<table>';
     html += '<thead><tr> <th>Name</th> <th>Address</th> <th>Company</th> </tr></thead>';
-    for (i = 0; i < people.length; i++)
+    for (let i = 0; i < people.length; i++)
     {
         html += "<tr><td>"+people[i].name+"</td>";
         html += "<td>"+people[i].address.street+" "+people[i].address.suburb+"</td>";
@@ -172,7 +178,7 @@ function generateCompanyTable()
 {
     let html = '<table>';
     html += '<thead><tr> <th>Name</th> <th>Category</th> <th>Start</th> <th>End</th> </tr></thead>';
-    for (i = 0; i < people.length; i++)
+    for (let i = 0; i < people.length; i++)
     {
     
     }
